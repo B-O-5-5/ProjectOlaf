@@ -6,6 +6,7 @@ public class EnemyWaveSpawner : MonoBehaviour {
 
     public Transform enemyPrefab;
     public Transform enemy2Prefab;
+    public Transform enemy3Prefab;
     public Transform spawnPoint;
 
     public Text waveCounterText;
@@ -64,6 +65,13 @@ public class EnemyWaveSpawner : MonoBehaviour {
 
                 yield return new WaitForSeconds(0.5f);
             }
+
+            for (int i = 0; i < Wave_1.anzahlEnemies3; i++)
+            {
+                SpawnEnemy3();
+
+                yield return new WaitForSeconds(0.5f);
+            }
         }
 		else if (waveNumber == 2) {			
 
@@ -76,6 +84,13 @@ public class EnemyWaveSpawner : MonoBehaviour {
             for (int i = 0; i < Wave_2.anzahlEnemies2; i++)
             {
                 SpawnEnemy2();
+
+                yield return new WaitForSeconds(0.5f);
+            }
+
+            for (int i = 0; i < Wave_2.anzahlEnemies3; i++)
+            {
+                SpawnEnemy3();
 
                 yield return new WaitForSeconds(0.5f);
             }
@@ -94,6 +109,12 @@ public class EnemyWaveSpawner : MonoBehaviour {
 
                 yield return new WaitForSeconds(0.5f);
             }
+            for (int i = 0; i < Wave_3.anzahlEnemies3; i++)
+            {
+                SpawnEnemy3();
+
+                yield return new WaitForSeconds(0.5f);
+            }
         }
 		else if (waveNumber == 4) {			
 
@@ -106,6 +127,13 @@ public class EnemyWaveSpawner : MonoBehaviour {
             for (int i = 0; i < Wave_4.anzahlEnemies2; i++)
             {
                 SpawnEnemy2();
+
+                yield return new WaitForSeconds(0.5f);
+            }
+
+            for (int i = 0; i < Wave_4.anzahlEnemies3; i++)
+            {
+                SpawnEnemy3();
 
                 yield return new WaitForSeconds(0.5f);
             }
@@ -123,6 +151,13 @@ public class EnemyWaveSpawner : MonoBehaviour {
 
                 yield return new WaitForSeconds(0.5f);
             }
+
+            for (int i = 0; i < Wave_5.anzahlEnemies3; i++)
+            {
+                SpawnEnemy3();
+
+                yield return new WaitForSeconds(0.5f);
+            }
         } else if (waveNumber == 6) {			
 
 			for (int i = 0; i < Wave_6.anzahlEnemies; i++) {
@@ -133,6 +168,13 @@ public class EnemyWaveSpawner : MonoBehaviour {
             for (int i = 0; i < Wave_6.anzahlEnemies2; i++)
             {
                 SpawnEnemy2();
+
+                yield return new WaitForSeconds(0.5f);
+            }
+
+            for (int i = 0; i < Wave_6.anzahlEnemies3; i++)
+            {
+                SpawnEnemy3();
 
                 yield return new WaitForSeconds(0.5f);
             }
@@ -149,6 +191,13 @@ public class EnemyWaveSpawner : MonoBehaviour {
 
                 yield return new WaitForSeconds(0.5f);
             }
+
+            for (int i = 0; i < Wave_7.anzahlEnemies3; i++)
+            {
+                SpawnEnemy3();
+
+                yield return new WaitForSeconds(0.5f);
+            }
         } else if (waveNumber == 8) {			
 
 			for (int i = 0; i < Wave_8.anzahlEnemies; i++) {
@@ -159,6 +208,13 @@ public class EnemyWaveSpawner : MonoBehaviour {
             for (int i = 0; i < Wave_8.anzahlEnemies2; i++)
             {
                 SpawnEnemy2();
+
+                yield return new WaitForSeconds(0.5f);
+            }
+
+            for (int i = 0; i < Wave_8.anzahlEnemies3; i++)
+            {
+                SpawnEnemy3();
 
                 yield return new WaitForSeconds(0.5f);
             }
@@ -175,6 +231,13 @@ public class EnemyWaveSpawner : MonoBehaviour {
 
                 yield return new WaitForSeconds(0.5f);
             }
+
+            for (int i = 0; i < Wave_9.anzahlEnemies3; i++)
+            {
+                SpawnEnemy3();
+
+                yield return new WaitForSeconds(0.5f);
+            }
         } else if (waveNumber == 10) {			
 
 			for (int i = 0; i < Wave_10.anzahlEnemies; i++) {
@@ -185,6 +248,12 @@ public class EnemyWaveSpawner : MonoBehaviour {
             for (int i = 0; i < Wave_10.anzahlEnemies2; i++)
             {
                 SpawnEnemy2();
+
+                yield return new WaitForSeconds(0.5f);
+            }
+            for (int i = 0; i < Wave_10.anzahlEnemies3; i++)
+            {
+                SpawnEnemy3();
 
                 yield return new WaitForSeconds(0.5f);
             }
@@ -205,6 +274,13 @@ public class EnemyWaveSpawner : MonoBehaviour {
     {
 
         Instantiate(enemy2Prefab, spawnPoint.position, spawnPoint.rotation);
+
+    }
+
+    void SpawnEnemy3()
+    {
+
+        Instantiate(enemy3Prefab, spawnPoint.position, spawnPoint.rotation);
 
     }
 }
