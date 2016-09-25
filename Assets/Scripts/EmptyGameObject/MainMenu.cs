@@ -5,14 +5,16 @@ using System.Collections;
 public class MainMenu : MonoBehaviour {
 
     public float musicVolume = 0.5f;
-    public int DankMusic = 0;
+    public int dankMusic = 0;
+
     public bool test = false;
 
     void Update()
     {
-        test = FindObjectOfType<Toggle>().isOn;
+        test= FindObjectOfType<Toggle>().isOn;
         musicVolume = FindObjectOfType<AudioSource>().volume;
-        DankMusic = GetPlaylistStatus();
+
+        dankMusic = GetPlaylistStatus();
 
     }
 
@@ -20,7 +22,7 @@ public class MainMenu : MonoBehaviour {
     {
 
         PlayerPrefs.SetFloat("MusicVolume", musicVolume);
-        PlayerPrefs.SetInt("PlaylistStatus", DankMusic);
+        PlayerPrefs.SetInt("PlaylistStatus", dankMusic);
 
         Application.LoadLevel(zaehler);
 
