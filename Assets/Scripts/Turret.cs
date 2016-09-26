@@ -10,9 +10,12 @@ public class Turret : MonoBehaviour {
     public float fireRate = 1f;
     private float firCountdown = 0f;
     public int dmg = 1;
+    public bool AntiAirTurret;
+    public bool AntiGroundTurret;
 
     [Header("Unity Setup Fields")]
-    public string enemyTag = "Enemy";
+    public string enemyTagGround = "EnemyGround";
+    public string enemyTagAir = "EnemyAir";
 
     public Transform partToRotate;
     public float turnSpeed = 5f;
@@ -20,18 +23,38 @@ public class Turret : MonoBehaviour {
     public GameObject bulletPrefab;
     public Transform firePoint;
 
-    public GameObject turretUpgrade;
-
-
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
 	}
 
     void UpdateTarget()
     {
 
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
+
+        GameObject[] enemiesAir = GameObject.FindGameObjectsWithTag(enemyTagAir);
+        GameObject[] enemiesGround = GameObject.FindGameObjectsWithTag(enemyTagGround);
+
+        GameObject[] enemies = new GameObject[enemiesGround.Length + enemiesAir.Length];
+
+        if (AntiGroundTurret && AntiAirTurret)
+        {
+            enemiesGround.CopyTo(enemies, 0);
+            enemiesAir.CopyTo(enemies, enemiesGround.Length);
+        }
+        else if (AntiGroundTurret)
+        {
+            enemies = enemiesGround;
+        }
+        else if (AntiAirTurret)
+        {
+            enemies = enemiesAir;
+        }
+        else
+        {
+            Debug.Log("Kein Schussmodi audgewählt!");
+        }
+
         float shortestDistance = Mathf.Infinity;
         GameObject nearestEnemy = null;
 
