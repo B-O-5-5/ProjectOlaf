@@ -30,19 +30,17 @@ public class EnemyWaveSpawner : MonoBehaviour {
     void Update()
     {
         enemies = GameObject.FindGameObjectsWithTag(enemyTagGround);
-        Debug.Log(enemies.Length);
     }
 
 
     IEnumerator SpawnWave()
     {
 
-        waveNumber++;
-        waveCounterText.text = waveNumber.ToString();
-
-
         foreach (WaveManager wave in Waves)
         {
+            waveNumber++;
+            waveCounterText.text = waveNumber.ToString();
+
             for (int i = 0; i < wave.anzahlEnemies; i++)
             {
                 SpawnEnemy();
