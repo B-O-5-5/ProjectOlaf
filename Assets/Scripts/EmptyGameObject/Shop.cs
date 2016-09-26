@@ -7,6 +7,7 @@ public class Shop : MonoBehaviour {
     public TurretBlueprint Turret_3;
     public TurretBlueprint Turret_4;
     public TurretBlueprint Turret_5;
+    public TurretBlueprint Turret_6;
 
     BuildManager buildManager;
 
@@ -42,4 +43,8 @@ public class Shop : MonoBehaviour {
         buildManager.SelectTurretToBuild(Turret_5);
     }
 
+    public void SelectTurret_6()
+    {
+        buildManager.SelectTurretToBuild(Turret_6);
+    }
 }
