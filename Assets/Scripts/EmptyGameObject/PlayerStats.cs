@@ -13,6 +13,9 @@ public class PlayerStats : MonoBehaviour {
     public Text playerHealthText;
     public Text playerMoneyText;
 
+    public GameObject WinScreen;
+    public GameObject LooseScreen;
+
     void Start()
     {
         Health = startHealth;
@@ -24,11 +27,13 @@ public class PlayerStats : MonoBehaviour {
         playerHealthText.text = Health.ToString() + " <3";
         playerMoneyText.text = Money.ToString() + "$";
 
-
         if (Health <= 0)
         {
-            print("Game Over!");
-            Application.LoadLevel(0);
+            LooseScreen.SetActive(true);
+        }
+        if (Health >= 0 && this.GetComponent<EnemyWaveSpawner>().gameEnd && this.GetComponent<EnemyWaveSpawner>().waveNumber == this.GetComponent<EnemyWaveSpawner>().Waves.Length)
+        {
+            WinScreen.SetActive(true);
         }
     }
 

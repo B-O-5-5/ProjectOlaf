@@ -12,14 +12,16 @@ public class EnemyWaveSpawner : MonoBehaviour {
 
     public Text waveCounterText;
 
-	public string enemyTagGround = "EnemyGround";
+    public bool gameEnd = false;
+
+    public string enemyTagGround = "EnemyGround";
 
     public float timeBetweenWaves = 5f;
     private float countdown = 2f;
 
     public WaveManager[] Waves;
 
-    private int waveNumber = 0;
+    public int waveNumber = 0;
     GameObject[] enemies;
 
     void Start()
@@ -35,6 +37,10 @@ public class EnemyWaveSpawner : MonoBehaviour {
 
     IEnumerator SpawnWave()
     {
+        if (countdown >= 0)
+        {
+            countdown -= Time.deltaTime;
+        }
 
         foreach (WaveManager wave in Waves)
         {
@@ -75,7 +81,8 @@ public class EnemyWaveSpawner : MonoBehaviour {
             yield return new WaitForSeconds(timeBetweenWaves);
         }
 
-
+        countdown = 2f;
+        gameEnd = true;
     }
 	
 
