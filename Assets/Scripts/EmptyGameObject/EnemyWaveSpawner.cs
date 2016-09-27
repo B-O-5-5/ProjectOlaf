@@ -8,6 +8,7 @@ public class EnemyWaveSpawner : MonoBehaviour {
     public Transform enemy2Prefab;
     public Transform enemy3Prefab;
     public Transform enemy4Prefab;
+    public Transform enemy5Prefab;
     public Transform spawnPoint;
 
     public Text waveCounterText;
@@ -37,10 +38,7 @@ public class EnemyWaveSpawner : MonoBehaviour {
 
     IEnumerator SpawnWave()
     {
-        if (countdown >= 0)
-        {
-            countdown -= Time.deltaTime;
-        }
+        yield return new WaitForSeconds(countdown);
 
         foreach (WaveManager wave in Waves)
         {
@@ -73,6 +71,12 @@ public class EnemyWaveSpawner : MonoBehaviour {
 
                 yield return new WaitForSeconds(0.5f);
             }
+            for (int i = 0; i < wave.anzahlEnemies5; i++)
+            {
+                SpawnEnemy5();
+
+                yield return new WaitForSeconds(0.5f);
+            }
 
             while (enemies.Length > 0)
             {
@@ -88,29 +92,26 @@ public class EnemyWaveSpawner : MonoBehaviour {
 
     void SpawnEnemy()
     {
-
         Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
-
     }
 
     void SpawnEnemy2()
     {
-
         Instantiate(enemy2Prefab, spawnPoint.position, spawnPoint.rotation);
-
     }
 
     void SpawnEnemy3()
     {
-
         Instantiate(enemy3Prefab, spawnPoint.position, spawnPoint.rotation);
-
     }
 
     void SpawnEnemy4()
     {
-
         Instantiate(enemy4Prefab, spawnPoint.position, spawnPoint.rotation);
+    }
 
+    void SpawnEnemy5()
+    {
+        Instantiate(enemy5Prefab, spawnPoint.position, spawnPoint.rotation);
     }
 }
