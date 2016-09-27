@@ -21,7 +21,24 @@ public class Enemy : MonoBehaviour {
 
     void Update ()
     {
-        Vector3 dir = new Vector3(target.position.x, target.position.y + flightAltitude, target.position.z) - transform.position;
+
+        Vector3 dir;
+        // Ist der Gegner ein "Luftgegner" und muss er noch "aufsteigen"
+        if (this.gameObject.transform.position.y - 2 < flightAltitude)
+        {
+            dir = new Vector3(0, 1, 0);
+        }
+        else
+        {
+            dir = new Vector3(target.position.x, target.position.y + flightAltitude, target.position.z) - transform.position;
+        }
+        // Ist der Gegner ein "Luftgegner" und muss am Ziel wieder "absteigen"
+        if (wavePointIndex >= Waypoints.wayPoints.Length - 1 && flightAltitude != 0 && Vector3.Distance(transform.position, new Vector3(target.position.x, target.position.y + this.gameObject.transform.position.y - 2, target.position.z)) <= 0.4f)
+        {
+            dir = new Vector3(0, -1, 0);
+            GetNextWaypoint();
+        }
+
         transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
 
         if (Vector3.Distance(transform.position, new Vector3(target.position.x, target.position.y + flightAltitude, target.position.z)) <= 0.4f)
@@ -32,12 +49,18 @@ public class Enemy : MonoBehaviour {
 
     void GetNextWaypoint()
     {
+        // Ist der Gegner noch über dem Ziel? --> return zu Update()
+        if (this.gameObject.transform.position.y > target.position.y && wavePointIndex >= Waypoints.wayPoints.Length - 1 && flightAltitude != 0)
+            return;
+
+        // Hat der Gegner das Ziel erreicht?
         if (wavePointIndex >= Waypoints.wayPoints.Length - 1)
-        {
+        { 
             PlayerStats.Health -= dmg;
             Destroy(gameObject);
-            return;
+            return;      
         }
+
         wavePointIndex++;
         target = Waypoints.wayPoints[wavePointIndex];
     }
