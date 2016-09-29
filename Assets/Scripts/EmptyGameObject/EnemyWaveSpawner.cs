@@ -13,16 +13,18 @@ public class EnemyWaveSpawner : MonoBehaviour {
 
     public Text waveCounterText;
 
-    public bool gameEnd = false;
-
-    public string enemyTagGround = "EnemyGround";
-
     public float timeBetweenWaves = 5f;
     private float countdown = 2f;
 
     public WaveManager[] Waves;
 
+    [HideInInspector]
     public int waveNumber = 0;
+    [HideInInspector]
+    public string enemyTagGround = "EnemyGround";
+    [HideInInspector]
+    public bool gameEnd = false;
+
     GameObject[] enemies;
 
     void Start()
